@@ -1,0 +1,170 @@
+Challenges SQL :
+
+partie COUNT
+1-le nbr total de clients
+select count(*) as total from clients;
+
+2-nbr total de commandes
+select count(*) as totalC from commandes;
+
+3- nombre de commandes par client
+select client_id, count(*) as nb_commandes from commandes
+GROUP by client_id;
+---------------------
+
+AVG
+1-montant moyen des commandes
+select avg(total) as moyenne from commandes;
+
+2-prix moyen des produits
+select avg(prix) as prix_moyen from produits;
+
+3-montant moyen des commandes par client
+select client_id, avg(total) as moyenne from commandes
+GROUP BY client_id;
+
+---------------------
+
+SUM
+1-total des ventes
+select sum(total) as total from commandes;
+
+2-total des ventes par client
+select client_id, sum(total) as totalC from commandes
+GROUP BY client_id;
+
+3-chiffre d'affaires par ville
+select c.ville, sum(co.total) as ca from clients c
+join commandes co on c.id = co.client_id
+GROUP BY c.ville;
+
+-----------------------
+
+1-prix du produit le plus cher
+select max(prix) as prix_max from produits;
+
+2-montant de la commande la moins chère
+select min(total) as c_min from commandes;
+
+3-montant maximum des commandes par client
+select client_id, max(total) as c_max from commandes
+GROUP BY client_id;
+
+----------------
+
+GROUP BY
+1-nombre de clients par ville
+select ville, count(*) as nb_clients from clients
+GROUP BY ville;
+
+2-nombre de commandes par client
+select client_id, count(*) as nb_com from commandes
+GROUP BY client_id;
+
+3-chiffre d'affaires par client
+select client_id, sum(total) as ca from commandes
+GROUP BY client_id;
+
+---------------
+
+ORDER BY
+1-produits par prix croissant
+select * from produits
+order by prix ASC;
+
+2-commandes par date décroissante
+select * from commandes
+order by date_commande DESC;
+
+3-clients par chiffre d'affaires décroissant
+select c.nom, sum(co.total) as ca from clients c
+join commandes co ON c.id = co.client_id
+GROUP by c.nom
+order by ca DESC;
+-----------------------
+HAVING
+1-clients ayant passé plus d'une commande
+select client_id, count(*) as nb_commandes from commandes
+group by client_id
+HAVING count(*) > 1;
+
+2-villes ayant plus de deux clients
+select ville, count(*) as nb_clients from clients
+group by ville
+HAVING count(*) > 2;
+
+3-clients dont le chiffre d'affaires dépasse seuil 2000
+select client_id, sum(total) as ca from commandes
+group by client_id
+HAVING sum(total)> 2000;
+------------------------
+JOIN
+-commandes avec le nom du client
+select co.id, c.nom, co.date_commande, co.total from commandes co
+join clients c on co.client_id = c.id;
+
+-produits commandés avec leurs quantités
+select p.nom, cp.quantite from commande_produit cp
+join produits p on cp.produit_id = p.id;
+
+-détail des commandes
+select c.nom as client, p.nom as produit, cp.quantite from commande_produit cp
+join commandes co on cp.commande_id = co.id
+join clients c on co.client_id = c.id
+join produits p on cp.produit_id = p.id;
+
+-----------------------------------------
+INNER JOIN
+-clients ayant au moins une commande
+select distinct c.* from clients c
+inner join commandes co on c.id = co.client_id;
+
+-produits qui ont été commandés
+select distinct p.* from produits p
+inner  join commande_produit cp on p.id = cp.produit_id;
+
+-chiffre d'affaires par produit
+select p.nom, sum(cp.quantite * p.prix) as ca from commande_produit cp
+inner join produits p on cp.produit_id = p.id
+group by p.nom;
+------------------------------------------
+LEFT JOIN
+-afficher tous les clients, même ceux sans commande
+select c.id, c.nom, co.id as commande_id from clients c
+left join commandes co on c.id = co.client_id;
+
+-afficher tous les produits, même ceux jamais commandés
+select p.id, p.nom, cp.quantit from produits p
+left join commande_produit cp on p.id = cp.produit_id;
+
+-aficher les clients n'ayant passé aucune commande
+select c.id, c.nom from clients c
+left join commandes co on c.id = co.client_id
+where co.id IS NULL;
+
+--------------
+RIGHT JOIN
+-afficher toutes les commandes, même sans client associé
+select c.nom, co.id, co.total from clients c
+right join commandes co on c.id = co.client_id;
+
+-afficher toutes les lignes de commande avec leurs produits
+select cp.id, p.nom, cp.quantite from produits p
+right join commande_produit cp on p.id = cp.produit_id;
+
+-identifier les commandes sans client
+select co.id, co.total from clients c
+right join commandes co on c.id = co.client_id
+where c.id is NULL;
+
+-------------------
+CASE WHEN THEN
+-classer les commandes selon leur montant
+select  id, total, case WHEN total < 500 THEN 'Petite commande'
+    WHEN total BETWEEN 500 AND 2000 THEN 'Commande moyenne'
+    else 'Grande commande'
+END as categorie from commandes;
+
+-classer les produits selon leur gamme de prix:
+
+

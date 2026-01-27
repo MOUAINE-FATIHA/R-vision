@@ -1,0 +1,22 @@
+REVISION : 
+Partie UML:
+
+1. Qu'est-ce qu'une classe dans un diagramme de classes ?
+Une classe représente quelque chose du métier.Elle contient des attributs et des méthodes qui décrivent ce que cet objet peut faire.
+
+2. Pourquoi est-il problématique d'avoir des classes sans méthodes ?
+Parce qu'une classe sans méthodes ne fait rien, elle sert juste à stocker des données.
+Toute la logique sera ailleurs,ce qui rend le programme plus compliqué,plus difficile à comprendre et à maintenir.
+
+3. Expliquer le principe de responsabilité unique
+c-à-d une classe doit avoir une seule responsabilité.Elle ne doit s'occuper que d'un seul rôle précis,sinon elle devient difficile à modifier.
+
+Partie pratique:
+
+Challenge 1 :
+Une classe Livre avec titre, auteur et isbn décrit bien les informations du livre, mais elle est incomplète.elle ne permet pas de savoir ce que l'on peut faire avec le livre (l'emprunter, le retourner, afficher ses infos).
+
+Challenge 3 :
+La méthode inscriptionAuCours() doit être placée dans la classe Etudiant.
+car l'étudiant qui décide de s'inscrire à un cours, pas l'inverse , cela respecte mieux la logique métier et le principe de responsabilité unique.
+-------------------
