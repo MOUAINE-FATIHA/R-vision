@@ -1,0 +1,47 @@
+partie sql:
+
+1.Quelle est la différence entre DDL (CREATE, ALTER) et DML (INSERT, UPDATE,DELETE)?
+
+il permet de créer ou modifier la structure de la base de données, par exemple créer une table ou la modifier.
+par contre DML,permet de manipuler les données à l’intérieur des tables, comme ajouter, modifier ou supprimer des lignes.
+
+
+2. À quoi sert une clé primaire ?
+
+Une clé primaire sert à identifier chaque enregistrement de façon unique dans une table.
+
+3. Comment filtre-t-on des données avec la clause WHERE ?
+On utilise la clause WHERE pour sélectionner seulement les lignes qui respectent une condition précise
+
+● Challenges Pratiques :
+1. Challenge 1 : Écrire la requête CREATE TABLE pour une table Produits (id, nom,
+prix, stock).
+
+create table Produits (
+    id int primary key AUTO_INCREMENT,
+    nom varchar(50),
+    prix decimal(10,2),
+    stock int
+);
+
+2. Challenge 2 : Écrire les requêtes INSERT pour ajouter 3 nouveaux produits dans
+la table.
+
+insert into Produits (nom, prix, stock) values
+('Clavier', 250, 10),
+('Souris', 120, 0),
+('Écran', 1800, 5);
+
+3. Challenge 3 : Écrire une requête UPDATE pour augmenter le prix d'un produit
+spécifique de 10%, puis une requête DELETE pour supprimer un produit en
+rupture de stock.
+
+-->augmentation du prix:
+update Produits
+set prix = prix * 1.10
+where id = 1;
+
+--> Suppression:
+delete from Produits
+where stock =0;
+
