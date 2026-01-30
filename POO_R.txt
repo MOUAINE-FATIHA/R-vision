@@ -1,0 +1,133 @@
+PHP POO
+
+🟦 Jour 4 : PHP POO - Classes & Objets
+
+●​ Questions Théoriques :
+1.​ Quelle est la différence entre une classe et un objet ?
+Une classe c'est un modèle ou un plan, elle décrit les attributs et les methodes d'un objet.
+Un objet est une instance de cette classe, c-à-d une version réelle créée à partir du modèle
+
+2.​ À quoi sert le mot-clé $this ?
+$this désigner l'objet actuel à l'intérieur de la classe , il permet d'accéder aux attributs et aux méthodes de l'objet courant.
+
+3.​ Quel est le rôle du constructeur (__construct) ?
+Le constructeur est une méthode spéciale qui s'exécute automatiquement quand on crée un objet , il sert à initialiser les attributs de l'objet.
+
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : Créer une classe Voiture avec 3 attributs (marque, modele,
+vitesse) et une méthode accelerer() qui augmente la vitesse.
+
+<?php
+
+class Voiture {
+    public $marque;
+    public $modele;
+    public $vitesse = 0 ;
+
+    public function accelerer() {
+        $this->vitesse +=10;
+        echo "vitesse: " . $this->vitesse ;
+    }
+}
+
+2.​ Challenge 2 : Ajouter un constructeur à la classe Voiture pour initialiser la
+marque et le modèle lors de la création de l'objet.
+
+<?php
+
+class Voiture {
+    public $marque;
+    public $modele;
+    public $vitesse = 0;
+
+    public function __construct($marque, $modele) {
+        $this->marque = $marque;
+        $this->modele = $modele;
+    }
+
+    public function accelerer() {
+        $this->vitesse +=10;
+        echo "La voiture $this->marque a $this->vitesse km/h <br> " ;
+    }
+}
+
+3.​ Challenge 3 : Instancier deux objets de la classe Voiture et appeler leurs
+méthodes pour vérifier leur fonctionnement.
+
+$v1=new Voiture("Toyota","corolla");
+$v2 =new Voiture("BMW","X5");
+
+$v1->accelerer();
+$v2->accelerer(); 
+
+🟦 Jour 5 : PHP POO - Encapsulation
+●​ Questions Théoriques :
+1.​ Qu’est-ce que l’encapsulation ? Quel est son but ?
+il sert de protéger les données d'une classe et contrôler leur accès.
+
+2.​ Quelle est la différence entre public, private et protected ?
+public: on peut accéder à l'attribut ou la méthode partout.
+private: on peut accéder à les attributs dans la classe
+protected: accessible dans la classe et dans les classes qui héritent.
+
+3.​ À quoi servent les getters et setters ? Est-ce toujours nécessaire d'en avoir pour
+chaque attribut ?
+les getters servent à récupérer la valeur d'un attribut privé,
+et les setters servent à modifier un attribut avec un contrôle.
+--> ils ne sont pas toujours obligatoires, mais ils sont très utiles quand on veut protéger les données ou vérifier les valeurs.
+
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : Modifier la classe Voiture : mettre l'attribut vitesse en private.
+class Voiture {
+    public $marque;
+    public $modele;
+    private $vitesse= 0;
+}
+
+2.​ Challenge 2 : Créer un getter getVitesse() et un setter setVitesse(int $v)
+qui empêche d'assigner une vitesse négative.
+
+class Voiture {
+    public $marque;
+    public $modele;
+    private $vitesse = 0;
+    public function getVitesse(){
+        return $this->vitesse;
+    }
+    public function setVitesse(int $v){
+        if ($v >= 0) {
+            $this->vitesse = $v;
+        }else{
+            echo "Vitesse incorrecte";
+        }
+    }
+}
+
+3.​ Challenge 3 : Créer une classe CompteBancaire avec un attribut solde privé.
+Implémenter les méthodes deposer() et retirer() en s'assurant que le solde
+ne puisse pas devenir négatif.
+
+class CompteBancaire {
+    private $solde= 0 ;
+    public function __construct($soldeInitial){
+        $this->solde = $soldeInitial ;
+    }
+    public function deposer($montant){
+        if($montant > 0){
+            $this-> solde += $montant ;
+        }
+    }
+    public function retirer($montant){
+        if($montant > 0 && $montant <= $this->solde) {
+            $this->solde -= $montant;
+        }else{
+            echo "le solde est trés petit";
+        }
+    }
+    public function getSolde(){
+        return $this->solde;
+    }
+}
+
