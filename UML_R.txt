@@ -20,3 +20,36 @@ Challenge 3 :
 La méthode inscriptionAuCours() doit être placée dans la classe Etudiant.
 car l'étudiant qui décide de s'inscrire à un cours, pas l'inverse , cela respecte mieux la logique métier et le principe de responsabilité unique.
 -------------------
+
+🟦 Jour 6 : UML - Relations entre Classes :
+
+●​ Questions Théoriques :
+1.​ Quelle est la différence fondamentale entre la composition et l'agrégation ?
+Donnez un exemple pour chacune.
+
+La différence c'est que dans la composition est une relation forte c-à-d l'objet partie ne peut pas exister sans le tout , par contre l'agrégation c'est une relation faible alors l'objet partie peut exister sans le tout
+ex de composition: candidat et son profile
+ex d'agrégation: équipe et joueur car le joueur peut exister meme s'il n'appartient à aucune équipe.
+
+
+2.​ Comment lisez-vous une cardinalité (ex: 1..* des deux côtés) ?
+une relation de many to many (table pivo)
+
+3.​ Qu'est-ce qu'une classe associative et quand l'utilise-t-on ?
+la classe associative est utiliser lorsqu'on a une relation entre deux classes n'est pas juste un lien , elle contient ses propre données.. comme la relation entre société et personne = emploi
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : Modéliser la relation entre Maison et Piece. Justifier le choix entre
+agrégation et composition.
+
+--> Relation de composition car une pièce ne peut pas exister sans maison.
+
+2.​ Challenge 2 : Modéliser la relation entre Etudiant et Cours. Définir les
+cardinalités (un étudiant peut suivre plusieurs cours, un cours a plusieurs
+étudiants).
+
+3.​ Challenge 3 : Le diagramme actuel montre une relation incorrecte (ex:
+composition au lieu d'association simple). Identifier l'erreur, la corriger et
+justifier la correction.
+
+remplacement de la composition par une association si les deux classes peuvent exister indépendamment.
