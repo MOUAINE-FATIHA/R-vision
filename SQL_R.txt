@@ -73,3 +73,40 @@ select count(*) from commandes ;
 select avg(prix) from produits ;
 3.​ Challenge 3 : Écrire la requête pour trouver le montant de la commande la plus chère
 select max(montant) from commandes;
+
+
+🟦 Jour 7 : SQL - Jointures
+●​ Questions Théoriques :
+1.​ Quelle est la différence entre INNER JOIN et LEFT JOIN ?
+
+inner join affiche seulement les lignes qui ont une correspondance dans les deux tables , par contre left join affiche toutes les lignes de la table gauche meme si elles n'ont pas de correspondance dans l'autre table.
+
+
+2.​ Dans quel cas utiliser un RIGHT JOIN ?
+
+si on veut garder toutes les lignes de la table droite meme s'il n'y a pas de correspondance dans la table gauche.
+
+3.​ Peut-on joindre plus de deux tables dans une seule requête ?
+oui on peut faire plusieurs jointure si il existe les clés etrangeres.
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : (INNER JOIN) Afficher les commandes avec le nom du client
+correspondant (tables Commandes et Clients).
+
+select c.article , cl.nom from commandes c
+inner join client cl on c.id_client = cl.id ;
+
+2.​ Challenge 2 : (LEFT JOIN) Afficher tous les clients, et le montant de leur
+commande s'ils en ont une (afficher NULL sinon).
+
+select cl.nom , c.montant from clients cl 
+left join commandes c on c.id_client = cl.id ;
+
+Challenge 3 : (JOIN 3 tables) Afficher le détail des commandes : nom du client,
+nom du produit et quantité commandée (tables Clients, Commandes,
+Produits, Lignes_Commandes).
+
+select cl.nom , p.nom , l.quantite from clients cl 
+inner join commandes on c.id_client = cl.id 
+inner join Lignes_Commandes l on c.id= l.id_commande
+inner join produits on l.id_produit = p.id;
