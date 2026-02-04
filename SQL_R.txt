@@ -110,3 +110,33 @@ select cl.nom , p.nom , l.quantite from clients cl
 inner join commandes on c.id_client = cl.id 
 inner join Lignes_Commandes l on c.id= l.id_commande
 inner join produits on l.id_produit = p.id;
+
+🟦 Jour 8 : SQL - Groupement et Tri
+
+●​ Questions Théoriques :
+1.​ Quelle est la différence entre WHERE et HAVING ?
+where filtre les lignes avant l'aggrégation par contre having est utiliser avec group by , il filtre les resultats agrégées
+
+2.​ Dans quel ordre logique SQL exécute-t-il FROM, WHERE, GROUP BY, HAVING,
+SELECT, ORDER BY ?
+from , where , group by , having , select , order by
+
+3.​ Peut-on utiliser un alias de colonne (AS nom_alias) dans une clause WHERE ?
+Et dans ORDER BY ?
+pour where non car where  s'éxecute avant select et pour order by oui c'est possible.
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : (GROUP BY) Afficher le chiffre d’affaires total par client.
+select id_client , sum(montant) as chiffreAffaire from commandes 
+group by id_client;
+
+2.​ Challenge 2 : (ORDER BY) Afficher les produits classés par prix, du plus cher au
+moins cher.
+select id_produit , prix from produit 
+order by prix DESC;
+
+3.​ Challenge 3 : (HAVING) Afficher uniquement les clients ayant passé plus de 2
+commandes.
+select id_client , count(*) as nbCommandes from commandes
+group by id_client 
+having count(*) > 2;
