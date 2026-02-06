@@ -181,4 +181,75 @@ class Moto extends Vehicule {
     }
 }
 
+🟦 Jour 10 : PHP POO - Abstraction
+
+●​ Questions Théoriques :
+1.​ Qu’est-ce que l’abstraction ?
+c'est la création d'une classe qui sert comme modèle général , elle permet de définir des méthodes importantes que les classes enfants doivent obligatoirement implémenter.
+
+2.​ Peut-on instancier une classe abstraite ? Pourquoi ?
+non , la classe abstraite est seulement une base pour les classes filles elle contient souvent des méthodes abstraites qui ne sont pas encore définies.
+
+3.​ Peut-on déclarer une méthode abstraite private ? Expliquez.
+non, car la méthode abstraite doit être redéfinie dans les classes enfants.
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : Créer une classe abstraite Animal avec une méthode crier(). La
+classe Animal ne peut pas être instanciée.
+abstract class Animal{
+	abstract public function crier();
+}
+
+2.​ Challenge 2 : Créer une classe Chien et une classe Chat qui héritent d'Animal
+et implémentent chacune leur propre version de la méthode crier().
+class Chien extends Animal{
+    public function crier(){
+        echo "chien";
+    }
+}
+class Chat extends Animal{
+    public function crier(){
+        echo"chat";
+    }
+}
+
+3.​ Challenge 3 : Créer une classe parente Employe avec une méthode abstraite
+calculerSalaire(). Créer deux classes filles EmployeFixe et
+EmployeCommission qui l'implémentent.
+
+Classe abstraite Employe
+abstract class Employe {
+    public $nom;
+    public function __construct($nom){
+        $this->nom= $nom;
+    }
+    abstract public function calculerSalaire();
+}
+
+EmployeFixe
+class EmployeFixe extends Employe{
+
+    public $salaireFixe;
+    public function __construct($nom, $salaireFixe) {
+        parent::__construct($nom);
+        $this->salaireFixe= $salaireFixe;
+    }
+    public function calculerSalaire(){
+        return $this -> salaireFixe;
+    }
+}
+
+EmployeCommission
+class EmployeCommission extends Employe{
+    public $ventes;
+    public $tauxCommission;
+    public function __construct($nom , $ventes , $tauxCommission) {
+        parent::__construct($nom);
+        $this -> ventes= $ventes;
+        $this -> tauxCommission = $tauxCommission;
+    }
+    public function calculerSalaire(){
+        return $this-> ventes * $this-> tauxCommission;
+    }
+}
 
