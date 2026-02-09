@@ -53,3 +53,31 @@ composition au lieu d'association simple). Identifier l'erreur, la corriger et
 justifier la correction.
 
 remplacement de la composition par une association si les deux classes peuvent exister indépendamment.
+
+🟦 Jour 11 : UML - Cohérence et Spécialisation
+
+●​ Questions Théoriques :
+1.​ Expliquez la relation "est un" (is-a) dans le contexte de la généralisation.
+ségnifie l'héritage, c-à-d la classe enfant hérite la classe mere.
+
+2.​ Pourquoi est-il crucial de maintenir la cohérence entre le diagramme de
+classes et l'implémentation ?
+car le diagramme représente la structure du projet, il permet de comprendre le projet et d'éviter les erreurs pendant le développement
+
+3.​ Quelle est la différence entre un acteur principal et un acteur secondaire dans
+un diagramme de cas d'utilisation ?
+acteur principal utilise directement le système pour atteindre un objectif , par contre l'acteur secondaire intervient indirectement ou qui aide le système.
+
+●​ Challenges Pratiques :
+1.​ Challenge 1 : On vous donne un morceau de code PHP avec des classes.
+Dessinez le diagramme de classes UML correspondant fidèlement.
+
+
+2.​ Challenge 2 : Modéliser une relation de généralisation entre Personne (parent),
+Etudiant (enfant) et Professeur (enfant). La flèche doit être dans le bon sens.
+
+La flèche va de l'enfant vers le parent.
+
+3.​ Challenge 3 : On vous donne un diagramme de cas d'utilisation pour un site
+e-commerce. Identifiez l'acteur principal, les acteurs secondaires et proposez
+une généralisation d'acteurs (ex: Utilisateur -> Client, Administrateur).
